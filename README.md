@@ -1,4 +1,4 @@
-# Lucazz's Dotfiles
+# Yasmin's Dotfiles
 
 ## Overview
 
@@ -12,7 +12,7 @@ But, if you do:
 
 ```bash
 xcode-select --install
-git clone --recursive https://github.com/lucazz/dotfiles.git  ~/.dotfiles
+git clone --recursive https://github.com/yasming/dotfiles.git  ~/.dotfiles
 cd .dotfiles
 ./install
 ```
