@@ -1,0 +1,23 @@
+export ARCHPREFERENCE="arm64"
+export AUTO_MOUNT_HOME=false
+export CLOUDSDK_PYTHON="/opt/homebrew/bin/python3"
+export EDITOR="nvim"
+export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!{.git,node_modules,log}/*'"
+export FZF_DEFAULT_OPTS="--inline-info --height 40% --layout=reverse"
+export GPG_TTY=$(tty)
+export HISTSIZE=10000
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_INSECURE_REDIRECT=1
+export HOMEBREW_PREFIX="/opt/homebrew";
+export HOMEBREW_REPOSITORY="/opt/homebrew";
+export HOST=$(hostname)
+export LC_ALL=en_US.UTF-8
+export SAVEHIST=10000
+export VISUAL="nvim"
+export ZSH=$HOME/.dotfiles
+export MCFLY_FUZZY=true
+export MCFLY_RESULTS=15
+export MCFLY_HISTORY_LIMIT=5000
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export NVM_DIR="$HOME/.nvm"

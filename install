@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Setup git
+#ln -s "${BASEDIR}/git/gitconfig" ~/.gitconfig
+#ln -s "${BASEDIR}/git/gitignore" ~/.gitignore
+
+# Install homebrew dependencies
+bash "${BASEDIR}/homebrew/install.sh"
+
+# Install asdf plugins
+bash "${BASEDIR}/asdf/install.sh"
+
+# Install yarn dependencies
+bash "${BASEDIR}/yarn/install.sh"
+
+# Go get packages
+bash "${BASEDIR}/golang/install.sh"
+
+# OSX defaults
+bash "${BASEDIR}/osx-defaults/osx-defaults.sh"
+
+# Configure Alacritty
+ln -s "${BASEDIR}/alacritty/alacritty.yml" ~/.config/alacritty/alacritty.yml
+
+# Configuring ssh
+mkdir -p "${BASEDIR}/.ssh/"
+ln -s "${BASEDIR}/ssh/config" ~/.ssh/config
+
+# Setup tmux
+git clone --branch v3.0.0 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+ln -s "${BASEDIR}/tmux/tmux.conf" ~/.tmux.conf
+bash "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
+
+# vimfiles
+mkdir -p ~/.config
+ln -s "${BASEDIR}/nvim/" ~/.config/
+curl -fLo "${BASEDIR}/nvim/autoload/plug.vim" --create-dirs \
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim +PlugInstall +qall
+nvim +TSInstall bash go cmake java json +qall
+
+# Create secrets file
+touch "${BASEDIR}/.secrets"
+
+# Configure helm
+asdf install helm 3.7.2
+asdf global helm 3.7.2
+helm plugin install https://github.com/futuresimple/helm-secrets
+
+# Setup bash_profile
+rm ~/.profile
+rm ~/.zshrc
+ln -s "${BASEDIR}/zsh/zshrc" ~/.zshrc
+/usr/local/opt/fzf/install

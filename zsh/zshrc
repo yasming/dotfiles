@@ -1,0 +1,19 @@
+source ~/.dotfiles/zsh/completion.zsh #Source all completions
+source ~/.secrets # Source all secrets
+source ~/.dotfiles/zsh/path.zsh # Source all paths
+source ~/.dotfiles/zsh/exports.zsh # Source all exports
+source ~/.dotfiles/zsh/config.zsh # Source all zsh configs
+source ~/.dotfiles/zsh/aliases.zsh # Source all aliases
+source ~/.dotfiles/zsh/plugins/git.zsh # Enable git prompt
+source ~/.dotfiles/zsh/plugins/fzf.zsh # Enable FZF configs
+source ~/.fzf.zsh # Enable FZF
+eval "$(direnv hook zsh)" # Enable direnv
+. "/opt/homebrew/Cellar/asdf/0.10.2/libexec/asdf.sh" # Enable ASDF
+. "/opt/homebrew/etc/profile.d/autojump.sh" # Enable autojump
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Switch to an arm64e shell by default
+if [ `machine` != arm64e ]; then
+    exec arch -arm64 zsh
+fi
